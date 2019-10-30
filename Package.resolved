@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "FoldingCell",
+        "repositoryURL": "https://github.com/Ramotion/folding-cell.git",
+        "state": {
+          "branch": null,
+          "revision": "994a279cd1e039254806261258778f37907dccd9",
+          "version": "5.0.2"
+        }
+      },
+      {
+        "package": "QMobileUI",
+        "repositoryURL": "https://github.com/quatreios/QMobileUI.git",
+        "state": {
+          "branch": "HEAD",
+          "revision": "13290a8be7e91b29e4a43aa71ba58553642021b4",
+          "version": null
+        }
+      },
+      {
+        "package": "XCGLogger",
+        "repositoryURL": "https://github.com/DaveWoodCom/XCGLogger.git",
+        "state": {
+          "branch": null,
+          "revision": "f0daefd2a472f0c8d3d12a4b0d45594195a6c74d",
+          "version": "7.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

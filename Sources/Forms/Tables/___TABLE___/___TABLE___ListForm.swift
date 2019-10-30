@@ -1,33 +1,17 @@
 //
-//  Bugs_MobileListForm.swift
-//  Bugs_Mobile
+//  ___TABLE___ListForm.swift
+//  ___PACKAGENAME___
 //
-//  Created by David Azancot on Fri, 23 Nov 2018 10:14:43 GMT
-//  ©2018 My Company All rights reserved
+//  Created by ___FULLUSERNAME___ on ___DATE___
+//  ___COPYRIGHT___
 
 import UIKit
+
 import QMobileUI
 import FoldingCell
-import SwiftMessages
-import Moya
 
-class CustomCell: FoldingCell {
-
-    override func awakeFromNib() {
-        foregroundView.layer.cornerRadius = 10
-        foregroundView.layer.masksToBounds = true
-        super.awakeFromNib()
-    }
-
-    override func animationDuration(_ itemIndex: NSInteger, type _: FoldingCell.AnimationType) -> TimeInterval {
-        let durations = [0.26, 0.2, 0.2]
-        return durations[itemIndex]
-    }
-}
-
-/// Generated list form for Bugs_Mobile table.
+/// Generated list form for  ___TABLE___ table.
 @IBDesignable
-
 class ___TABLE___ListForm: ListFormTable {
 
     public override var tableName: String {
@@ -40,6 +24,7 @@ class ___TABLE___ListForm: ListFormTable {
         static var rowsCount = 6
     }
 
+    let blueColor = UIColor(red: 91/255, green: 180/255, blue: 175/255, alpha: 1.0)
     var cellHeights: [CGFloat] = []
     var unfolded: [IndexPath] = []
 
@@ -51,33 +36,34 @@ class ___TABLE___ListForm: ListFormTable {
 
     // MARK: Events
     override func onLoad() {
-
         setup()
 
         // SearchBar text style
-        let blueColor = UIColor(red: 91/255, green: 180/255, blue: 175/255, alpha: 1.0)
-        let textFieldInsideUISearchBar = searchBar.value(forKey: "searchField") as? UITextField
-        textFieldInsideUISearchBar?.textColor = blueColor
-        textFieldInsideUISearchBar?.font = UIFont(name: "HelveticaNeue-Thin", size: 15)
+        if let textFieldInsideUISearchBar = searchBar.value(forKey: "searchField") as? UITextField {
+            textFieldInsideUISearchBar.textColor = blueColor
+            textFieldInsideUISearchBar.font = UIFont(name: "HelveticaNeue-Thin", size: 15)
 
-        // SearchBar placeholder style
-        let textFieldInsideUISearchBarLabel = textFieldInsideUISearchBar!.value(forKey: "placeholderLabel") as? UILabel
-        textFieldInsideUISearchBarLabel?.textColor = blueColor
-        textFieldInsideUISearchBarLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 15)
-        self.refreshControl?.tintColor = UIColor.white
+            // SearchBar placeholder style
+            let textFieldInsideUISearchBarLabel = textFieldInsideUISearchBar.value(forKey: "placeholderLabel") as? UILabel
+            textFieldInsideUISearchBarLabel?.textColor = blueColor
+            textFieldInsideUISearchBarLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 15)
+        }
+        self.refreshControl?.tintColor = .white
 
-            switch UIScreen.main.nativeBounds.height {
-            case 1136:
-                print("iPhone 5 or 5S or 5C")
-                searchBar.placeholder = "Version, Summary or Bug number"
-
-            default:
-                print("other")
-                searchBar.placeholder = "Search by task name"
-            }
+        switch UIScreen.main.nativeBounds.height {
+        case 1136:
+            logger.verbose("placeholder: iPhone 5 or 5S or 5C")
+            searchBar.placeholder = "Version, Summary or Bug number"
+        default:
+            logger.verbose("placeholder: other sizes")
+            searchBar.placeholder = "Search by task name"
+        }
     }
 
-    let vc = UIStoryboard(name: "___TABLE___ListForm", bundle: nil).instantiateViewController(withIdentifier: "Second") as! TableSearchController
+    lazy var tableSearchController: TableSearchController = {
+        let storyboard = UIStoryboard(name: "___TABLE___ListForm", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "Second") as! TableSearchController //swiftlint:disable:this force_cast
+    }()
 
     open override func onSearchBegin() {
         let checkEmptyTable = UserDefaults.standard.searchArray
@@ -113,16 +99,17 @@ class ___TABLE___ListForm: ListFormTable {
     var totalHeight = CGFloat()
 
     func addChildView() {
-        addChild(vc)
-        vc.delegate = self
-        self.view.addSubview(vc.view)
+        addChild(tableSearchController)
+        tableSearchController.delegate = self
+        self.view.addSubview(tableSearchController.view)
         self.tableView.isScrollEnabled = false
-        vc.didMove(toParent: self)
+        tableSearchController.didMove(toParent: self)
         let nav = UINavigationController()
         let navHeight = nav.navigationBar.frame.size.height
-        self.vc.view.frame.origin.y = self.tableView!.contentOffset.y + navHeight
+        self.tableSearchController.view.frame.origin.y = self.tableView!.contentOffset.y + navHeight
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1, options: [.curveEaseOut], animations: {
-            self.vc.view.frame.origin.y = self.tableView!.contentOffset.y + navHeight
+            guard let tableView = self.tableView else { return }
+            self.tableSearchController.view.frame.origin.y = tableView.contentOffset.y + navHeight
         }, completion: nil)
     }
 
@@ -130,32 +117,31 @@ class ___TABLE___ListForm: ListFormTable {
         let screenSize = UIScreen.main.bounds
         let screenHeight = CGFloat(screenSize.height)
 
-        var frame = self.vc.view.frame
+        var frame = self.tableSearchController.view.frame
         frame.origin.y = UIScreen.main.bounds.maxY
-        self.vc.view.frame = frame
-        vc.willMove(toParent: nil)
+        self.tableSearchController.view.frame = frame
+        self.tableSearchController.willMove(toParent: nil)
         self.tableView.isScrollEnabled = true
 
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1, options: [.curveEaseOut], animations: {
-            self.vc.view.frame.origin.y = screenHeight
-        }) { _ in
-            self.vc.view.removeFromSuperview()
-            self.vc.removeFromParent()
-        }
+            self.tableSearchController.view.frame.origin.y = screenHeight
+        }, completion: { _ in
+            self.tableSearchController.view.removeFromSuperview()
+            self.tableSearchController.removeFromParent()
+        })
     }
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
         let contentOffset =  tableView.contentOffset.y
         let nav = UINavigationController()
         let navHeight = nav.navigationBar.frame.size.height
         let screenSize = UIScreen.main.bounds
         let width  = view.frame.width
         totalHeight = screenSize.height - keyboardHeight - navHeight
-        self.vc.view.frame = CGRect(x: 0, y: -screenSize.height, width: width, height: self.totalHeight)
-        vc.view.frame.origin.y = contentOffset + navHeight
+        self.tableSearchController.view.frame = CGRect(x: 0, y: -screenSize.height, width: width, height: self.totalHeight)
+        self.tableSearchController.view.frame.origin.y = contentOffset + navHeight
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1, options: [.curveEaseOut], animations: {
-            self.vc.view.frame.origin.y = contentOffset + navHeight
+            self.tableSearchController.view.frame.origin.y = contentOffset + navHeight
         }, completion: nil)
     }
 
@@ -189,7 +175,8 @@ extension ___TABLE___ListForm {
 
     override func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
       //  super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
-        guard case let cell as CustomCell = cell else {
+        guard case let cell as ___TABLE___CustomCell = cell else {
+            logger.warning("Cell no more a ___TABLE___CustomCell. Could not configure it")
             return
         }
         cell.backgroundColor = .clear
@@ -201,22 +188,18 @@ extension ___TABLE___ListForm {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        let cell = tableView.cellForRow(at: indexPath) as! FoldingCell
-        if cell.isAnimating() {
+        guard let cell = tableView.cellForRow(at: indexPath) as? FoldingCell, cell.isAnimating() else {
             return
         }
 
         var duration = 0.0
         let cellIsCollapsed = !unfolded.contains(indexPath)
         if cellIsCollapsed {
-
             unfolded.append(indexPath)
             cell.unfold(true, animated: true, completion: nil)
             duration = 0.5
         } else {
-
-            if let index = unfolded.index(of: indexPath) {
+            if let index = unfolded.firstIndex(of: indexPath) {
                 unfolded.remove(at: index)
             }
             cell.unfold(false, animated: true, completion: nil)
@@ -229,6 +212,8 @@ extension ___TABLE___ListForm {
         }, completion: nil)
     }
 }
+
+// MARK: - TableSearchController
 
 class TableSearchController: UITableViewController {
 
@@ -248,7 +233,7 @@ class TableSearchController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedText = tableContent[indexPath.row]
-        UIApplication.shared.sendAction("resignFirstResponder", to:nil, from:nil, for:nil)
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
 
         self.delegate?.textSelected(selectedText)
     }
@@ -258,7 +243,7 @@ class TableSearchController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
+        if editingStyle == .delete {
             tableContent.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
 
@@ -278,6 +263,8 @@ class TableSearchController: UITableViewController {
     }
 }
 
+// MARK: - TableSearchControllerDelegate
+
 protocol TableSearchControllerDelegate: NSObjectProtocol {
     func textSelected(_ text: String)
 }
@@ -285,10 +272,13 @@ protocol TableSearchControllerDelegate: NSObjectProtocol {
 extension ___TABLE___ListForm: TableSearchControllerDelegate {
 
     func textSelected(_ text: String) {
-
-        self.searchBar?.text = text
-        self.searchBar(self.searchBar, textDidChange: text)
-
+        guard let searchBar = self.searchBar else {
+            logger.warning("Cannot get search bar")
+            return
+        }
+        searchBar.text = text
+        let searchDelegate: UISearchBarDelegate = self
+        searchDelegate.searchBar?(searchBar, textDidChange: text)
         // XXX maybe force perform search
 
         self.dataSource?.performFetch()
@@ -297,6 +287,7 @@ extension ___TABLE___ListForm: TableSearchControllerDelegate {
     }
 }
 
+// MARK: SearchArray
 protocol SearchArray {
     var searchArray: [String] {get set}
 }
@@ -329,4 +320,22 @@ extension UserDefaults: SearchArray {
             self.synchronize()
         }
     }
+}
+
+// MARK: cell
+
+class ___TABLE___CustomCell: FoldingCell {
+
+    let durations = [0.26, 0.2, 0.2]
+
+    override func awakeFromNib() {
+        foregroundView.layer.cornerRadius = 10
+        foregroundView.layer.masksToBounds = true
+        super.awakeFromNib()
+    }
+
+    override func animationDuration(_ itemIndex: NSInteger, type _: FoldingCell.AnimationType) -> TimeInterval {
+        return durations[itemIndex]
+    }
+
 }

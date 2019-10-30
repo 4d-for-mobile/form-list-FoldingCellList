@@ -1,0 +1,23 @@
+name: Lint
+on: push
+jobs:
+  test:
+    name: Test
+    runs-on: macOS-10.14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+      - name: Install SwiftLint
+        run: brew install swiftlint
+        env:
+          HOMEBREW_NO_INSTALL_CLEANUP: 1
+      - name: Code Lint
+        run: |
+          swiftlint --strict
+      - name: Install iblinter
+        run: brew install IBDecodable/homebrew-tap/iblinter
+      - name: Storyboard Lint
+        run: |
+          iblinter lint
