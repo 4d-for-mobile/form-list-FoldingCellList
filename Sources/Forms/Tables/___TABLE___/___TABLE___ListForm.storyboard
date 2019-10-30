@@ -311,15 +311,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
             </objects>
-            <point key="canvasLocation" x="511.19999999999999" y="110.19490254872565"/>
-        </scene>
-        <!--Bugs_MobileDetailsForm-->
-        <scene sceneID="pzT-Ts-eNA">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Bugs_MobileDetailsForm" id="TmP-Gk-7ej" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZA2-Ia-mDc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1185" y="112"/>
+            <point key="canvasLocation" x="442" y="112"/>
         </scene>
         <!--___TABLE_SHORT_LABEL___-->
         <scene sceneID="43G-ax-Y26">
@@ -352,20 +344,21 @@
         <!--Table Search Controller-->
         <scene sceneID="5A7-Y0-4DH">
             <objects>
-                <tableViewController storyboardIdentifier="Second" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BP7-NV-ffb" customClass="TableSearchController" customModule="BugBase_v1_6" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Second" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BP7-NV-ffb" customClass="TableSearchController" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="iaR-wy-FeO">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="JZo-Cl-iLn" style="IBUITableViewCellStyleDefault" id="AKc-lR-JrI">
-                                <rect key="frame" x="0.0" y="28" width="0.0" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="500" height="45.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AKc-lR-JrI" id="qAh-Gp-vER">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="500" height="45.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JZo-Cl-iLn">
-                                            <rect key="frame" x="-8" y="0.0" width="23" height="44"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JZo-Cl-iLn">
+                                            <rect key="frame" x="20" y="0.0" width="460" height="45.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
                                             <color key="textColor" name="BackgroundColor"/>
@@ -384,11 +377,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="3bU-Ir-NTd"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="0.0" height="0.0"/>
+                    <size key="freeformSize" width="500" height="200"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bcP-gb-Wu7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1302" y="41"/>
+            <point key="canvasLocation" x="1235" y="-107"/>
         </scene>
     </scenes>
     <resources>
