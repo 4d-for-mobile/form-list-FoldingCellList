@@ -288,10 +288,10 @@ extension ___TABLE___ListForm: TableSearchControllerDelegate {
 }
 
 // MARK: SearchArray
-protocol SearchArray {
+private protocol SearchArray {
     var searchArray: [String] {get set}
 }
-extension SearchArray {
+fileprivate extension SearchArray {
     mutating func appendSearchArray(_ text: String) {
         var array = self.searchArray
         if array.contains(text) {
@@ -307,10 +307,10 @@ extension SearchArray {
     }
 }
 
-private let kSearchArray = "searchArray"
+private let kSearchArray = "searchArray___TABLE___"
 extension UserDefaults: SearchArray {
 
-    var searchArray: [String] {
+    fileprivate var searchArray: [String] {
         get {
             let objects = self.object(forKey: kSearchArray)
             return objects as? [String] ?? [String]()
