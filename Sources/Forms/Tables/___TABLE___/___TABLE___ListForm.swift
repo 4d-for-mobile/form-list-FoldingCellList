@@ -291,7 +291,7 @@ extension ___TABLE___ListForm: TableSearchControllerDelegate {
 private protocol SearchArray {
     var searchArray: [String] {get set}
 }
-fileprivate extension SearchArray {
+extension SearchArray {
     mutating func appendSearchArray(_ text: String) {
         var array = self.searchArray
         if array.contains(text) {

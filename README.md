@@ -6,6 +6,7 @@
 
 [![Language][swift-shield]][swift-url]
 [![Lint][lint-shield]][lint-url]
+[![Build][build-shield]][build-url]
 
 * **Type:** Table
 * **Section:** not available
@@ -27,3 +28,5 @@
 [swift-url]: https://developer.apple.com/swift/
 [lint-shield]: https://github.com/DavAz4D/4d-for-ios-form-list-FoldingCellList/workflows/Lint/badge.svg
 [lint-url]: https://github.com/DavAz4D/4d-for-ios-form-list-FoldingCellList/actions?workflow=Lint
+[build-shield]: https://github.com/DavAz4D/4d-for-ios-form-list-FoldingCellList/workflows/Build/badge.svg
+[build-url]: https://github.com/DavAz4D/4d-for-ios-form-list-FoldingCellList/actions?workflow=Build
