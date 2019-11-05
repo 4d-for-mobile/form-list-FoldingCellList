@@ -4,14 +4,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "___PRODUCT___",
+    name: "4d-for-ios-form-list-FoldingCellList",
     platforms: [
         .iOS(.v13)
     ],
     products: [
         .library(
-            name: "4d-for-ios-form-list-FoldingCellList",
-            targets: ["4d-for-ios-form-list-FoldingCellList"]),
+            name: "___PRODUCT___",
+            targets: ["___PRODUCT___"]),
     ],
     dependencies: [
        .package(url: "https://github.com/Ramotion/folding-cell.git", from: "5.0.2"),
@@ -19,7 +19,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "4d-for-ios-form-list-FoldingCellList",
+            name: "___PRODUCT___",
             dependencies: ["FoldingCell", "QMobileUI"],
             path: "Sources")
     ]
