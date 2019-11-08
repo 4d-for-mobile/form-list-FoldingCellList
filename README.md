@@ -25,5 +25,5 @@
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [swift-shield]: http://img.shields.io/badge/language-swift-orange.svg?style=flat
 [swift-url]: https://developer.apple.com/swift/
-[check-shield]: https://github.com/DavAz4D/4d-for-ios-form-list-FoldingCellList/workflows/check/badge.svg
-[check-url]: https://github.com/DavAz4D/4d-for-ios-form-list-FoldingCellList/actions?workflow=check
+[check-shield]: https://github.com/4d-for-ios/4d-for-ios-form-list-FoldingCellList/workflows/check/badge.svg
+[check-url]: https://github.com/4d-for-ios/4d-for-ios-form-list-FoldingCellList/actions?workflow=check
