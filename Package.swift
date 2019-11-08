@@ -11,7 +11,7 @@ let package = Package(
     products: [
         .library(
             name: "___PRODUCT___",
-            targets: ["___PRODUCT___"]),
+            targets: ["___PRODUCT___"])
     ],
     dependencies: [
        .package(url: "https://github.com/Ramotion/folding-cell.git", from: "5.0.2"),
