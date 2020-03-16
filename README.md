@@ -6,6 +6,7 @@
 
 [![Language][swift-shield]][swift-url]
 [![check][check-shield]][check-url]
+[![release][release-shield]][release-url]
 
 * **Type:** Table
 * **Section:** not available
@@ -27,3 +28,5 @@
 [swift-url]: https://developer.apple.com/swift/
 [check-shield]: https://github.com/4d-for-ios/4d-for-ios-form-list-FoldingCellList/workflows/check/badge.svg
 [check-url]: https://github.com/4d-for-ios/4d-for-ios-form-list-FoldingCellList/actions?workflow=check
+[release-shield]: https://img.shields.io/github/v/release/4d-for-ios/form-list-FoldingCellList
+[release-url]: https://github.com/4d-for-ios/form-list-FoldingCellList/releases/latest/download/form-list-FoldingCellList.zip
