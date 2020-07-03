@@ -42,22 +42,8 @@ class ___TABLE___ListForm: ListFormTable {
         if let textFieldInsideUISearchBar = searchBar.value(forKey: "searchField") as? UITextField {
             textFieldInsideUISearchBar.textColor = blueColor
             textFieldInsideUISearchBar.font = UIFont(name: "HelveticaNeue-Thin", size: 15)
-
-            // SearchBar placeholder style
-            let textFieldInsideUISearchBarLabel = textFieldInsideUISearchBar.value(forKey: "placeholderLabel") as? UILabel
-            textFieldInsideUISearchBarLabel?.textColor = blueColor
-            textFieldInsideUISearchBarLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 15)
         }
         self.refreshControl?.tintColor = .white
-
-        switch UIScreen.main.nativeBounds.height {
-        case 1136:
-            logger.verbose("placeholder: iPhone 5 or 5S or 5C")
-            searchBar.placeholder = "Version, Summary or Bug number"
-        default:
-            logger.verbose("placeholder: other sizes")
-            searchBar.placeholder = "Search by task name"
-        }
     }
 
     lazy var tableSearchController: TableSearchController = {
@@ -188,7 +174,8 @@ extension ___TABLE___ListForm {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? FoldingCell, cell.isAnimating() else {
+        let cell = tableView.cellForRow(at: indexPath) as! FoldingCell
+        if cell.isAnimating() {
             return
         }
 
@@ -326,16 +313,15 @@ extension UserDefaults: SearchArray {
 
 class ___TABLE___CustomCell: FoldingCell {
 
-    let durations = [0.26, 0.2, 0.2]
-
     override func awakeFromNib() {
         foregroundView.layer.cornerRadius = 10
         foregroundView.layer.masksToBounds = true
+
         super.awakeFromNib()
     }
 
     override func animationDuration(_ itemIndex: NSInteger, type _: FoldingCell.AnimationType) -> TimeInterval {
+        let durations = [0.26, 0.2, 0.2]
         return durations[itemIndex]
     }
-
 }
