@@ -174,29 +174,30 @@ extension ___TABLE___ListForm {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! FoldingCell
-        if cell.isAnimating() {
-            return
-        }
-
-        var duration = 0.0
-        let cellIsCollapsed = !unfolded.contains(indexPath)
-        if cellIsCollapsed {
-            unfolded.append(indexPath)
-            cell.unfold(true, animated: true, completion: nil)
-            duration = 0.5
-        } else {
-            if let index = unfolded.firstIndex(of: indexPath) {
-                unfolded.remove(at: index)
+        if let cell = tableView.cellForRow(at: indexPath) as? FoldingCell {
+            if cell.isAnimating() {
+                return
             }
-            cell.unfold(false, animated: true, completion: nil)
-            duration = 0.8
-        }
 
-        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { () -> Void in
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }, completion: nil)
+            var duration = 0.0
+            let cellIsCollapsed = !unfolded.contains(indexPath)
+            if cellIsCollapsed {
+                unfolded.append(indexPath)
+                cell.unfold(true, animated: true, completion: nil)
+                duration = 0.5
+            } else {
+                if let index = unfolded.firstIndex(of: indexPath) {
+                    unfolded.remove(at: index)
+                }
+                cell.unfold(false, animated: true, completion: nil)
+                duration = 0.8
+            }
+
+            UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { () -> Void in
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }, completion: nil)
+        }
     }
 }
 
