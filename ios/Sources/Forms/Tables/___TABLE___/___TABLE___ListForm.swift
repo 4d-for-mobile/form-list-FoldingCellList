@@ -48,7 +48,7 @@ class ___TABLE___ListForm: ListFormTable {
 
     lazy var tableSearchController: TableSearchController = {
         let storyboard = UIStoryboard(name: "___TABLE___ListForm", bundle: nil)
-        return storyboard.instantiateViewController(withIdentifier: "Second") as! TableSearchController //swiftlint:disable:this force_cast
+        return storyboard.instantiateViewController(withIdentifier: "Second") as! TableSearchController // swiftlint:disable:this force_cast
     }()
 
     open override func onSearchBegin() {
@@ -145,7 +145,7 @@ class ___TABLE___ListForm: ListFormTable {
     }
 
     override func onDidAppear(_ animated: Bool) {
-        //Check if tableView is empty
+        // Check if tableView is empty
     }
 
     override func onWillDisappear(_ animated: Bool) {
